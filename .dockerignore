@@ -1,4 +1,13 @@
+# Build context — keep small for fast Fly remote builds
 .react-router
 build
 node_modules
+.git
+.github
+.cursor
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
 README.md
