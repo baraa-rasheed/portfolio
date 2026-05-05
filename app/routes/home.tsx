@@ -1,16 +1,53 @@
-import { Button } from "~/components/ui/button"
+import type { Route } from "./+types/home"
+import {
+  CertificationsSection,
+  CoursesSection,
+  EducationSection,
+  ExperienceSection,
+  HeroSection,
+  PortfolioLayoutProvider,
+  PortfolioPageAmbience,
+  PortfolioWorkbenchShell,
+  ProjectsMobileSection,
+  ProjectsWebsitesSection,
+  RecommendationsSection,
+  SiteFooter,
+  SkillsSection,
+} from "~/components/portfolio"
+import { SITE } from "~/constants/portfolio"
+
+export function meta(_: Route.MetaArgs) {
+  return [
+    { title: `${SITE.name} — ${SITE.title}` },
+    {
+      name: "description",
+      content: SITE.tagline,
+    },
+    { property: "og:title", content: `${SITE.name} — ${SITE.title}` },
+    { property: "og:description", content: SITE.tagline },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: SITE.url },
+  ]
+}
 
 export default function Home() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
+    <PortfolioLayoutProvider>
+      <div className="relative min-h-svh">
+        <PortfolioPageAmbience />
+        <PortfolioWorkbenchShell>
+          <HeroSection />
+          <ExperienceSection />
+          <ProjectsMobileSection />
+          <ProjectsWebsitesSection />
+          <SkillsSection />
+          <EducationSection />
+          <CertificationsSection />
+          <CoursesSection />
+          <RecommendationsSection />
+          <SiteFooter />
+        </PortfolioWorkbenchShell>
       </div>
-    </div>
+    </PortfolioLayoutProvider>
   )
 }

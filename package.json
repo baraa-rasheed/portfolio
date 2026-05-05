@@ -7,6 +7,7 @@
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
+    "gen:ios-catalog": "node scripts/gen-ios-app-catalog.mjs",
     "format": "prettier --write \"**/*.{ts,tsx}\""
   },
   "dependencies": {
@@ -17,9 +18,12 @@
     "clsx": "^2.1.1",
     "isbot": "^5.1.36",
     "lucide-react": "^1.14.0",
+    "motion": "^12.38.0",
+    "next-themes": "^0.4.6",
     "radix-ui": "^1.4.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-icons": "^5.6.0",
     "react-router": "7.13.1",
     "shadcn": "^4.6.0",
     "tailwind-merge": "^3.5.0",
