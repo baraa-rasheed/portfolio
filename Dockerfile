@@ -1,41 +1,22 @@
-# Multi-stage image for Fly.io / Docker — React Router SSR via react-router-serve.
-# Fly sets PORT (often 8080); HOST=0.0.0.0 binds all interfaces inside the machine.
-
-FROM node:20-alpine AS deps-dev
+FROM node:20-alpine AS development-dependencies-env
+COPY . /app
 WORKDIR /app
-COPY package.json package-lock.json ./
 RUN npm ci
 
-FROM node:20-alpine AS deps-prod
+FROM node:20-alpine AS production-dependencies-env
+COPY ./package.json package-lock.json /app/
 WORKDIR /app
-COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
 
-FROM node:20-alpine AS build
+FROM node:20-alpine AS build-env
+COPY . /app/
+COPY --from=development-dependencies-env /app/node_modules /app/node_modules
 WORKDIR /app
-COPY package.json package-lock.json ./
-COPY --from=deps-dev /app/node_modules ./node_modules
-COPY . .
 RUN npm run build
 
-FROM node:20-alpine AS runner
+FROM node:20-alpine
+COPY ./package.json package-lock.json /app/
+COPY --from=production-dependencies-env /app/node_modules /app/node_modules
+COPY --from=build-env /app/build /app/build
 WORKDIR /app
-
-ENV NODE_ENV=production
-ENV PORT=8080
-ENV HOST=0.0.0.0
-
-RUN addgroup --system --gid 1001 nodejs \
-  && adduser --system --uid 1001 nodejs
-
-COPY package.json package-lock.json ./
-COPY --from=deps-prod /app/node_modules ./node_modules
-COPY --from=build /app/build ./build
-
-RUN chown -R nodejs:nodejs /app
-
-USER nodejs
-
-EXPOSE 8080
-
 CMD ["npm", "run", "start"]

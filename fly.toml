@@ -1,31 +1,23 @@
-# Fly.io — https://fly.io/docs/reference/configuration/
-# First deploy: `fly launch` (creates app + syncs region), then `fly deploy`.
-# Set app name to match your Fly app: `fly apps list` or change `app` below.
+# fly.toml app configuration file generated for portfolio-muo0dg on 2026-05-05T20:41:16Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "portfolio"
-primary_region = "iad"
+app = 'portfolio-muo0dg'
+primary_region = 'dfw'
 
 [build]
-
-[env]
-  NODE_ENV = "production"
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = "stop"
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
-  processes = ["app"]
-
-[[http_service.checks]]
-  interval = "15s"
-  timeout = "5s"
-  grace_period = "20s"
-  method = "GET"
-  path = "/"
+  processes = ['app']
 
 [[vm]]
-  memory = "512mb"
-  cpu_kind = "shared"
+  memory = '1gb'
+  cpu_kind = 'shared'
   cpus = 1
+  memory_mb = 256
