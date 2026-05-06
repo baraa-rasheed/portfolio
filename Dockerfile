@@ -37,4 +37,5 @@ USER nodejs
 
 EXPOSE 8080
 
-CMD ["npm", "run", "start"]
+# Invoke serve directly so HOST/PORT from ENV reach Node (avoids npm wrapper quirks on Fly).
+CMD ["node", "./node_modules/@react-router/serve/bin.js", "./build/server/index.js"]

@@ -10,6 +10,8 @@ primary_region = "dfw"
 
 [env]
   NODE_ENV = "production"
+  # Required so react-router-serve calls app.listen(port, HOST); otherwise PC01 (proxy → app refused).
+  HOST = "0.0.0.0"
 
 [http_service]
   internal_port = 8080
