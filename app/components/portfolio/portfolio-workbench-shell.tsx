@@ -67,7 +67,9 @@ function PortfolioWorkbenchShellInner({
         // Mobile: normal flow, full-bleed; lg: fullscreen layer that hosts the glass window
         "relative w-full",
         "lg:fixed lg:inset-0 lg:z-30 lg:box-border lg:flex lg:flex-col",
-        workbenchMaximized ? "lg:p-0" : "lg:p-10 lg:pb-12 xl:p-14 2xl:p-16"
+        workbenchMaximized
+          ? "lg:p-0"
+          : "lg:px-8 lg:py-8 xl:px-12 xl:py-10 2xl:px-16 2xl:py-12"
       )}
     >
       <PortfolioExplorerSmoothNav />
@@ -105,7 +107,7 @@ function PortfolioWorkbenchShellInner({
           workbenchMaximized ? "lg:mx-0" : "lg:mx-auto",
           // Avoid `100vw` here: it includes the scrollbar on many browsers, which can offset centering at 100% zoom.
           "lg:w-full",
-          workbenchMaximized ? "lg:max-w-none" : "lg:max-w-[72rem]",
+          workbenchMaximized ? "lg:max-w-none" : "lg:max-w-none",
           workbenchMaximized
             ? "lg:rounded-none lg:border-0 lg:bg-[#fafafa]/52 lg:shadow-none lg:backdrop-blur-[32px]"
             : "lg:rounded-2xl lg:border lg:border-white/35 lg:bg-[#fafafa]/52 lg:shadow-[0_22px_60px_-16px_rgba(18,52,120,0.2)] lg:backdrop-blur-[32px]",
