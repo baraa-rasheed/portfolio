@@ -1,6 +1,6 @@
 "use client"
 
-import { ExternalLinkIcon, GlobeIcon } from "lucide-react"
+import { GlobeIcon } from "lucide-react"
 
 import type { ProjectItem } from "~/constants/portfolio"
 import { cn } from "~/lib/utils"
@@ -198,16 +198,6 @@ export function ProjectWebsiteCard({ project }: { project: ProjectItem }) {
       >
         {project.summary}
       </p>
-      {project.href ? (
-        <p className="mt-auto flex items-center gap-1.5 pt-1 text-xs font-medium text-foreground/80 group-hover:underline">
-          Open live demo
-          <ExternalLinkIcon
-            className="size-3.5 shrink-0 opacity-60"
-            strokeWidth={1.75}
-            aria-hidden
-          />
-        </p>
-      ) : null}
     </div>
   )
 

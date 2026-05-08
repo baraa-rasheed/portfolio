@@ -614,6 +614,19 @@
     }
 }
 
+/**
+ * Recommendations marquee — translates the rail by exactly one duplicated
+ * group width (-50%) for a seamless infinite loop.
+ */
+@keyframes portfolio-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+    }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+    }
+}
+
 @keyframes portfolio-scroll-hint {
   0%,
   100% {

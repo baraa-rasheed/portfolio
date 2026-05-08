@@ -14,6 +14,12 @@ type PortfolioLayoutValue = {
   explorerCollapsed: boolean
   setExplorerCollapsed: (collapsed: boolean) => void
   toggleExplorerCollapsed: () => void
+  workbenchMaximized: boolean
+  setWorkbenchMaximized: (max: boolean) => void
+  toggleWorkbenchMaximized: () => void
+  workbenchMinimized: boolean
+  setWorkbenchMinimized: (min: boolean) => void
+  toggleWorkbenchMinimized: () => void
 }
 
 const PortfolioLayoutContext = React.createContext<PortfolioLayoutValue | null>(
@@ -27,6 +33,13 @@ export function PortfolioLayoutProvider({
 }) {
   const [sidebarSide, setSidebarSideState] = React.useState<SidebarSide>("left")
   const [explorerCollapsed, setExplorerCollapsedState] =
+    React.useState(false)
+  // Default to maximized on first load — the workbench is the site, so we
+  // open it edge-to-edge and let visitors choose to "windowed" mode via the
+  // green traffic-light button.
+  const [workbenchMaximized, setWorkbenchMaximizedState] =
+    React.useState(true)
+  const [workbenchMinimized, setWorkbenchMinimizedState] =
     React.useState(false)
 
   React.useEffect(() => {
@@ -88,6 +101,22 @@ export function PortfolioLayoutProvider({
     })
   }, [])
 
+  const setWorkbenchMaximized = React.useCallback((max: boolean) => {
+    setWorkbenchMaximizedState(max)
+  }, [])
+
+  const toggleWorkbenchMaximized = React.useCallback(() => {
+    setWorkbenchMaximizedState((prev) => !prev)
+  }, [])
+
+  const setWorkbenchMinimized = React.useCallback((min: boolean) => {
+    setWorkbenchMinimizedState(min)
+  }, [])
+
+  const toggleWorkbenchMinimized = React.useCallback(() => {
+    setWorkbenchMinimizedState((prev) => !prev)
+  }, [])
+
   const value = React.useMemo(
     () => ({
       sidebarSide,
@@ -96,6 +125,12 @@ export function PortfolioLayoutProvider({
       explorerCollapsed,
       setExplorerCollapsed,
       toggleExplorerCollapsed,
+      workbenchMaximized,
+      setWorkbenchMaximized,
+      toggleWorkbenchMaximized,
+      workbenchMinimized,
+      setWorkbenchMinimized,
+      toggleWorkbenchMinimized,
     }),
     [
       sidebarSide,
@@ -104,6 +139,12 @@ export function PortfolioLayoutProvider({
       explorerCollapsed,
       setExplorerCollapsed,
       toggleExplorerCollapsed,
+      workbenchMaximized,
+      setWorkbenchMaximized,
+      toggleWorkbenchMaximized,
+      workbenchMinimized,
+      setWorkbenchMinimized,
+      toggleWorkbenchMinimized,
     ]
   )
 

@@ -170,8 +170,8 @@ export function EducationSection() {
         <ScrollReveal>
           <SectionHeading
             eyebrow="Education"
-            title="Academic foundations."
-            description="Two milestones in systems thinking and how I learn."
+            title="Education & foundations."
+            description="The programs that shaped how I think and build."
           />
         </ScrollReveal>
 

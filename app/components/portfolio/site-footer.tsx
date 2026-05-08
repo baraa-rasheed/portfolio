@@ -77,7 +77,15 @@ export function SiteFooter() {
       as="footer"
       accessibleTitleId="contact-heading"
     >
-      <div className="mx-auto flex max-w-6xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
+      <div
+        className={cn(
+          "mx-auto flex w-full max-w-6xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:py-10",
+          // Stretch to the full height of the section pane and vertically
+          // center the content so the form sits in the middle instead of
+          // being pinned to the top with empty space below.
+          "min-h-full lg:justify-center"
+        )}
+      >
         <ScrollReveal className="space-y-6 sm:space-y-8">
           <SectionHeading
             eyebrow="Contact"
@@ -146,13 +154,31 @@ export function SiteFooter() {
                 </p>
               ) : null}
 
-              <div className="flex flex-wrap items-center gap-2">
-                <Button type="submit" className="gap-2" disabled={!hasEmail}>
-                  <Send className="size-4 shrink-0" aria-hidden />
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className={cn(
+                    // Override the default size so the primary CTA carries
+                    // real weight on the contact page.
+                    "h-12 gap-2.5 px-7 text-[15px] font-semibold",
+                    "shadow-[0_18px_40px_-22px_oklch(0.55_0.18_265_/_0.7)]",
+                    "transition-all hover:-translate-y-0.5",
+                    "hover:shadow-[0_24px_50px_-20px_oklch(0.55_0.2_265_/_0.85)]",
+                    "dark:shadow-[0_22px_50px_-22px_oklch(0.62_0.22_270_/_0.65)]"
+                  )}
+                  disabled={!hasEmail}
+                >
+                  <Send className="size-[18px] shrink-0" aria-hidden />
                   Send via email
                 </Button>
                 {hasEmail ? (
-                  <Button asChild variant="outline">
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="h-12 px-5 text-[15px]"
+                  >
                     <a href={`mailto:${CONTACT.email}`}>Quick mailto</a>
                   </Button>
                 ) : null}

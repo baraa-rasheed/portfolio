@@ -22,7 +22,7 @@ export const SITE = {
 /** Optional portrait. Place a file in `public/` and point here, or use a remote URL. */
 export const IMAGES = {
   /** GitHub serves a redirect to the account avatar when this pattern is used. */
-  profile: "https://github.com/Baraa-bi.png",
+  profile: "/portrait.png",
   alt: "Portrait of Baraa Rasheed",
 } as const
 
@@ -101,35 +101,35 @@ export type ExplorerRow = ExplorerFileRow | ExplorerFolderRow
 export const EXPLORER_TREE: readonly ExplorerRow[] = [
   {
     type: "file",
-    label: "About",
+    label: "Overview",
     href: "#about",
     explorerFile: "hero.tsx",
     explorerKind: "tsx",
   },
   {
     type: "file",
-    label: "Experience",
+    label: "Work experience",
     href: "#experience",
     explorerFile: "experience.tsx",
     explorerKind: "tsx",
   },
   {
     type: "folder",
-    folderLabel: "Apps folder",
-    folderName: "apps",
+    folderLabel: "Projects folder",
+    folderName: "projects",
     defaultOpen: true,
     collapsible: false,
     children: [
       {
         type: "file",
-        label: "Mobile",
+        label: "Mobile apps",
         href: "#apps-mobile",
         explorerFile: "mobile.tsx",
         explorerKind: "tsx",
       },
       {
         type: "file",
-        label: "Web",
+        label: "Web apps",
         href: "#apps-web",
         explorerFile: "web.tsx",
         explorerKind: "tsx",
@@ -138,7 +138,7 @@ export const EXPLORER_TREE: readonly ExplorerRow[] = [
   },
   {
     type: "file",
-    label: "Skills",
+    label: "Toolbox",
     href: "#skills",
     explorerFile: "skills.ts",
     explorerKind: "ts",
@@ -166,7 +166,7 @@ export const EXPLORER_TREE: readonly ExplorerRow[] = [
   },
   {
     type: "file",
-    label: "Recommendations",
+    label: "References",
     href: "#recommendations",
     explorerFile: "recommendations.md",
     explorerKind: "md",
@@ -211,6 +211,7 @@ export type ExperienceItem = {
 
 /** LinkedIn company logos — replace if links expire. */
 export const COMPANY_LOGOS = {
+  rts: "https://1000logos.net/wp-content/uploads/2020/09/7-Eleven-Logo.png",
   kait: "https://media.licdn.com/dms/image/v2/D4D0BAQG_bfnygy13cA/company-logo_200_200/company-logo_200_200/0/1720952926467/kait_inc_logo?e=1779321600&v=beta&t=jNTPzDccDd6nHbJaEvQyCe1JtRpvkSrhm5Tq4f3opZE",
   oneZillion:
     "https://media.licdn.com/dms/image/v2/C4D0BAQEE13u_Hn0Xmg/company-logo_200_200/company-logo_200_200/0/1630551478337?e=1779321600&v=beta&t=tGFJ4Vn9msgYxfMd3uMgtKKYinRbBX4k7fTtleT5PqA",
@@ -219,6 +220,24 @@ export const COMPANY_LOGOS = {
 } as const
 
 export const EXPERIENCES: readonly ExperienceItem[] = [
+  {
+    id: "rts",
+    logoUrl: COMPANY_LOGOS.rts,
+    company: "ResolveTech Solutions - 7 Eleven",
+    role: "Senior Software Engineer",
+    period: "2023 — Present",
+    location: "Texas, USA",
+    highlights: [
+      "Innovate, Research & Evaluate new technologies and tools for a quality output. ",
+      "Architect, Design and Implement ensuring scalability, performance and security.  ",
+      "Code and implement new algorithms to solve complex problems. ",
+      "Develop the technical solution and deploy to cloud instances for testing.",
+      "Partner and collaborate with stakeholders and other technology teams.  ",
+      "Integrate new api or microservices required to deliver the feature. ",
+      "Work in an Agile development environment while continuously evaluating and improving engineering processes. ",
+      "Ensure solutions are built to industry standard and follow rigid security requirements. ",
+    ],
+  },
   {
     id: "kait",
     logoUrl: COMPANY_LOGOS.kait,
@@ -277,8 +296,8 @@ export const EDUCATION: readonly EducationItem[] = [
   {
     school: "Maharishi International University",
     degree: "Master of Science in Computer Science",
-    period: "Expected completion: December 2024",
-    detail: "Fairfield, Iowa",
+    period: "April 2022 - December 2024",
+    detail: "Fairfield, Iowa - GPA 3.8",
   },
   {
     school: "Balqa’ Applied University",
@@ -462,6 +481,13 @@ export const SKILL_GROUPS: readonly SkillGroup[] = [
  */
 export const PROJECTS: readonly ProjectItem[] = [
   ...IOS_APP_STORE_CATALOG_APPS,
+  {
+    name: "Expo Initlizer",
+    summary: "Generate Expo apps with ease",
+    kind: "web",
+    previewImage: "/expoinit-preview.png",
+    href: "https://expoinit.app",
+  },
   {
     name: "Next.js 13 dashboard",
     summary: "Personal projects dashboard and patterns demo",

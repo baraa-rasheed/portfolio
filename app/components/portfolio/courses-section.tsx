@@ -76,9 +76,9 @@ export function CoursesSection() {
       <div className="mx-auto max-w-6xl space-y-8 px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
         <ScrollReveal>
           <SectionHeading
-            eyebrow="Continuous learning"
-            title="Courses that sharpened execution."
-            description="Performance, backends, frameworks, and mobile."
+            eyebrow="Learning"
+            title="Courses I’ve taken."
+            description="Deep dives that improved how I design, debug, and deliver."
           />
         </ScrollReveal>
 

@@ -17,8 +17,9 @@ export function ProjectsWebsitesSection() {
         <ScrollReveal>
           <SectionHeading
             headingId="apps-web-heading"
-            eyebrow="Apps/Web"
-            title="Live sites and tooling in the browser."
+            eyebrow="Websites & web apps"
+            title="Web work I’ve built."
+            description="Landing pages, dashboards, and product UI shipped to the browser."
           />
         </ScrollReveal>
 

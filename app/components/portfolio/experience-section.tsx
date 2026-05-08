@@ -1,7 +1,6 @@
 "use client"
 
-import { Building2Icon, CornerDownRightIcon, MapPinIcon } from "lucide-react"
-import { motion } from "motion/react"
+import { Building2Icon, MapPinIcon } from "lucide-react"
 
 import { BrandImage } from "~/components/portfolio/brand-image"
 import type { ExperienceItem } from "~/constants/portfolio"
@@ -10,7 +9,6 @@ import { cn } from "~/lib/utils"
 
 import { ScrollReveal } from "./scroll-reveal"
 import { SectionHeading } from "./section-heading"
-import { useShowcaseCardHoverMotion } from "./showcase-card-motion"
 import { WorkbenchScrollFrame } from "./workbench-scroll-frame"
 
 const ACCENTS = [
@@ -21,8 +19,6 @@ const ACCENTS = [
     bullet: "from-sky-400 to-indigo-500 dark:from-sky-300 dark:to-indigo-400",
     halo:
       "from-sky-400/[0.18] via-indigo-400/[0.08] to-transparent dark:from-sky-400/[0.14] dark:via-indigo-400/[0.06]",
-    edge:
-      "group-hover/exp:border-sky-400/30 dark:group-hover/exp:border-sky-400/30",
   },
   {
     chipBg:
@@ -31,8 +27,6 @@ const ACCENTS = [
     bullet: "from-violet-400 to-fuchsia-500 dark:from-violet-300 dark:to-fuchsia-400",
     halo:
       "from-violet-400/[0.18] via-fuchsia-400/[0.08] to-transparent dark:from-violet-400/[0.14] dark:via-fuchsia-400/[0.06]",
-    edge:
-      "group-hover/exp:border-violet-400/30 dark:group-hover/exp:border-violet-400/30",
   },
   {
     chipBg:
@@ -41,8 +35,6 @@ const ACCENTS = [
     bullet: "from-emerald-400 to-teal-500 dark:from-emerald-300 dark:to-teal-400",
     halo:
       "from-emerald-400/[0.18] via-teal-400/[0.08] to-transparent dark:from-emerald-400/[0.14] dark:via-teal-400/[0.06]",
-    edge:
-      "group-hover/exp:border-emerald-400/30 dark:group-hover/exp:border-emerald-400/30",
   },
 ] as const
 
@@ -66,21 +58,16 @@ function ExperienceCard({
   const status = index === 0 ? "Most recent" : "Past chapter"
   const chapterNum = String(index + 1).padStart(2, "0")
   const totalNum = String(total).padStart(2, "0")
-  const hoverMotion = useShowcaseCardHoverMotion()
 
   return (
-    <motion.article
+    <article
       className={cn(
-        "group/exp relative isolate overflow-hidden rounded-2xl border transition-[border-color,box-shadow] duration-300",
+        "relative isolate overflow-hidden rounded-2xl border",
         "border-black/[0.07] bg-linear-to-br from-white/[0.55] via-white/[0.32] to-white/[0.14]",
         "shadow-[0_1px_0_1px_oklch(1_0_0_/0.45)_inset,0_18px_60px_-32px_oklch(0.35_0.06_260_/0.22)]",
         "dark:border-white/[0.08] dark:from-white/[0.045] dark:via-white/[0.025] dark:to-white/[0.01]",
-        "dark:shadow-[0_1px_0_1px_oklch(1_0_0_/0.05)_inset,0_22px_70px_-36px_oklch(0_0_0_/0.55)]",
-        "hover:shadow-[0_1px_0_1px_oklch(1_0_0_/0.5)_inset,0_28px_70px_-30px_oklch(0.35_0.08_260_/0.28)]",
-        "dark:hover:shadow-[0_1px_0_1px_oklch(1_0_0_/0.06)_inset,0_30px_80px_-32px_oklch(0_0_0_/0.7)]",
-        accent.edge
+        "dark:shadow-[0_1px_0_1px_oklch(1_0_0_/0.05)_inset,0_22px_70px_-36px_oklch(0_0_0_/0.55)]"
       )}
-      {...hoverMotion}
     >
       {/* Top hairline accent */}
       <div
@@ -91,10 +78,10 @@ function ExperienceCard({
         aria-hidden
       />
 
-      {/* Spotlight halo (top-left) */}
+      {/* Static spotlight halo (top-left) */}
       <div
         className={cn(
-          "pointer-events-none absolute -top-16 -left-14 -z-[1] h-56 w-56 rounded-full bg-linear-to-br opacity-90 blur-3xl transition-opacity duration-500 group-hover/exp:opacity-100 sm:h-64 sm:w-64",
+          "pointer-events-none absolute -top-16 -left-14 -z-[1] h-56 w-56 rounded-full bg-linear-to-br opacity-90 blur-3xl sm:h-64 sm:w-64",
           accent.halo
         )}
         aria-hidden
@@ -111,12 +98,12 @@ function ExperienceCard({
         {chapterNum}
       </span>
 
-      <div className="relative grid gap-5 p-4 sm:p-5 sm:gap-6 lg:grid-cols-[13.5rem_1fr] lg:gap-8 lg:p-6">
+      <div className="relative grid gap-5 p-4 sm:p-5 sm:gap-6 lg:grid-cols-[15rem_1fr] lg:gap-8 lg:p-6">
         {/* Meta column */}
-        <div className="flex flex-row items-start gap-3 lg:flex-col lg:gap-4">
+        <div className="flex flex-row items-start gap-4 lg:flex-col lg:gap-5">
           <div
             className={cn(
-              "flex size-12 shrink-0 items-center justify-center rounded-xl border shadow-md transition-transform duration-300 group-hover/exp:scale-[1.03] sm:size-[3.25rem]",
+              "flex size-[4.5rem] shrink-0 items-center justify-center rounded-2xl border shadow-md sm:size-20 lg:size-[5.5rem]",
               "border-white/70 bg-linear-to-br from-white to-white/65",
               "dark:border-white/15 dark:from-[#2a2b30] dark:to-[#1c1d22]"
             )}
@@ -124,7 +111,7 @@ function ExperienceCard({
             <BrandImage
               src={job.logoUrl}
               alt=""
-              className="size-8 rounded-lg object-cover sm:size-9"
+              className="size-12 rounded-xl object-cover sm:size-14 lg:size-16"
               fallback={Building2Icon}
               fallbackClassName="text-muted-foreground"
             />
@@ -189,30 +176,18 @@ function ExperienceCard({
             {job.highlights.map((line, hi) => (
               <li
                 key={line}
-                className="group/item relative flex items-start gap-2.5 text-[13px] leading-snug text-foreground/[0.88] sm:text-sm sm:leading-relaxed"
+                className="relative flex items-start gap-2 text-[13px] leading-snug text-foreground/[0.88] sm:text-sm sm:leading-relaxed"
               >
-                <span
-                  className={cn(
-                    "mt-[0.35em] flex size-[1.125rem] shrink-0 items-center justify-center rounded border transition-colors sm:size-5 sm:rounded-md",
-                    "border-black/[0.06] bg-white/45 text-muted-foreground/80 group-hover/item:text-foreground",
-                    "dark:border-white/[0.08] dark:bg-white/[0.04]"
-                  )}
-                  aria-hidden
-                >
-                  <CornerDownRightIcon className="size-2.5 sm:size-3" strokeWidth={2.25} />
+                <span className="mr-1 font-mono text-[9px] font-semibold tracking-wider text-muted-foreground/60 tabular-nums sm:mr-1.5 sm:text-[10px]">
+                  {String(hi + 1).padStart(2, "0")}
                 </span>
-                <span className="min-w-0">
-                  <span className="mr-1.5 font-mono text-[9px] font-semibold tracking-wider text-muted-foreground/60 tabular-nums sm:mr-2 sm:text-[10px]">
-                    {String(hi + 1).padStart(2, "0")}
-                  </span>
-                  {line}
-                </span>
+                <span className="min-w-0">{line}</span>
               </li>
             ))}
           </ul>
         </div>
       </div>
-    </motion.article>
+    </article>
   )
 }
 
@@ -225,8 +200,8 @@ export function ExperienceSection() {
         <ScrollReveal>
           <SectionHeading
             eyebrow="Experience"
-            title="A career, told in chapters."
-            description="SDK work, storefronts, shipping with PMs, designers, and founders."
+            title="Where I’ve worked."
+            description="Roles, impact, and the kind of problems I like to solve."
           />
         </ScrollReveal>
 

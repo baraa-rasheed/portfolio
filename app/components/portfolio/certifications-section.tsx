@@ -19,8 +19,8 @@ export function CertificationsSection() {
         <ScrollReveal>
           <SectionHeading
             eyebrow="Certifications"
-            title="Credentials that back the work."
-            description="Accredited certs—the same rigor I bring to delivery."
+            title="Certifications I’ve earned."
+            description="Formal credentials that support my delivery and leadership style."
           />
         </ScrollReveal>
 

@@ -73,9 +73,9 @@ export function SkillsSection() {
       <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8 lg:py-8">
         <ScrollReveal>
           <SectionHeading
-            eyebrow="Skills"
-            title="Stack and craft."
-            description="Two rows per group; scroll sideways to see every skill."
+            eyebrow="Toolbox"
+            title="Tools I ship with."
+            description="Languages, frameworks, and delivery systems I use day‑to‑day."
             className="max-w-2xl lg:space-y-2 [&_h2]:lg:text-3xl"
           />
         </ScrollReveal>

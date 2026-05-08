@@ -17,9 +17,9 @@ export function ProjectsMobileSection() {
         <ScrollReveal>
           <SectionHeading
             headingId="apps-mobile-heading"
-            eyebrow="Apps/Mobile"
-            title="Shipping to the App Store grids and installs."
-            description="App Store tiles in a full-height pane."
+            eyebrow="Mobile apps"
+            title="Apps I’ve shipped."
+            description="A selection of production iOS & Android work."
           />
         </ScrollReveal>
 
