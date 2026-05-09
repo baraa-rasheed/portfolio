@@ -138,49 +138,16 @@ export function HeroSection() {
     <WorkbenchScrollFrame id="about" className="relative">
       <div
         className={cn(
-          "relative mx-auto w-full max-w-6xl",
-          "px-4 pt-10 pb-12 sm:px-6 sm:pt-12 sm:pb-14",
-          "lg:px-8 lg:pt-14 lg:pb-16 xl:pt-16 xl:pb-20"
+          "relative mx-auto flex w-full max-w-6xl flex-col",
+          "px-4 pt-8 pb-6 sm:px-6 sm:pt-10 sm:pb-8",
+          "lg:min-h-full lg:px-8 lg:pt-12 lg:pb-8"
         )}
       >
-        {/* Top meta — index + status */}
         <div
           className={cn(
-            "portfolio-hero-enter portfolio-hero-delay-1",
-            "flex items-center justify-between gap-4",
-            "font-mono text-[10px] tracking-[0.22em] text-muted-foreground uppercase"
-          )}
-        >
-          <span className="inline-flex items-center gap-2 text-foreground/55">
-            <span className="text-foreground/35 tabular-nums">01</span>
-            <span aria-hidden>—</span>
-            <span>Overview</span>
-          </span>
-          <span
-            className={cn(
-              "inline-flex items-center gap-2",
-              "text-emerald-700/85 dark:text-emerald-300/85"
-            )}
-          >
-            <span
-              aria-hidden
-              className={cn(
-                "relative inline-flex size-1.5 items-center justify-center"
-              )}
-            >
-              <span className="absolute size-1.5 animate-ping rounded-full bg-emerald-500/55 dark:bg-emerald-400/45" />
-              <span className="relative size-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-            </span>
-            Open to senior roles
-          </span>
-        </div>
-
-        <div
-          className={cn(
-            "mt-10 grid w-full items-start gap-10",
-            "sm:mt-12 sm:gap-12",
-            "lg:mt-14 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] lg:gap-16",
-            "xl:gap-[5.5rem]"
+            "grid w-full items-start gap-8 sm:gap-10",
+            "lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] lg:gap-14",
+            "xl:gap-[4.5rem]"
           )}
         >
           {/* COPY */}
@@ -202,18 +169,18 @@ export function HeroSection() {
             {/* Display headline */}
             <h1
               className={cn(
-                "portfolio-hero-enter portfolio-hero-delay-2 mt-6",
-                "font-heading text-balance tracking-[-0.025em]",
-                "text-[2.35rem] leading-[1.02] font-medium",
-                "sm:text-[3rem] sm:leading-[1.0]",
-                "lg:text-[3.4rem]",
-                "xl:text-[4rem] xl:leading-[0.98]"
+                "portfolio-hero-enter portfolio-hero-delay-2 mt-4 sm:mt-5",
+                "font-heading text-balance tracking-[-0.03em]",
+                "text-[2.6rem] leading-[1.0] font-medium",
+                "sm:text-[3.5rem] sm:leading-[0.98]",
+                "lg:text-[4.1rem]",
+                "xl:text-[4.85rem] xl:leading-[0.96]"
               )}
             >
               <span className="block text-foreground/95">
                 Hi, I’m {firstName}.
               </span>
-              <span className="mt-2 block text-foreground/95">
+              <span className="mt-1.5 block text-foreground/95">
                 I build{" "}
                 <em
                   className={cn(
@@ -224,20 +191,17 @@ export function HeroSection() {
                 >
                   calm, reliable
                 </em>{" "}
-                software for
-              </span>
-              <span className="mt-2 block text-foreground/55">
-                mobile &amp; web.
+                software.
               </span>
             </h1>
 
             {/* Lede */}
             <p
               className={cn(
-                "portfolio-hero-enter portfolio-hero-delay-3 mt-7",
+                "portfolio-hero-enter portfolio-hero-delay-3 mt-5 sm:mt-6",
                 "max-w-[34rem] text-pretty",
-                "text-[15.5px] leading-[1.7] text-muted-foreground",
-                "sm:text-base sm:leading-[1.72]"
+                "text-[15px] leading-[1.68] text-muted-foreground",
+                "sm:text-[15.5px] sm:leading-[1.72]"
               )}
             >
               Nine years shipping mobile and web products across{" "}
@@ -251,8 +215,8 @@ export function HeroSection() {
             {/* CTAs — refined link buttons (no heavy chrome) */}
             <div
               className={cn(
-                "portfolio-hero-enter portfolio-hero-delay-4 mt-9",
-                "flex flex-wrap items-center gap-x-7 gap-y-4"
+                "portfolio-hero-enter portfolio-hero-delay-4 mt-6 sm:mt-7",
+                "flex flex-wrap items-center gap-x-7 gap-y-3"
               )}
             >
               <a
@@ -300,22 +264,22 @@ export function HeroSection() {
             {/* Now-at strip */}
             <div
               className={cn(
-                "portfolio-hero-enter portfolio-hero-delay-4 mt-10",
-                "inline-flex max-w-full items-center gap-3 self-start rounded-full pl-1.5 pr-3.5 py-1",
+                "portfolio-hero-enter portfolio-hero-delay-4 mt-7 sm:mt-8",
+                "inline-flex max-w-full items-center gap-3 self-start rounded-full pl-1 pr-3 py-1",
                 "border border-foreground/[0.08] bg-foreground/[0.02] backdrop-blur-md",
                 "dark:border-white/[0.07] dark:bg-white/[0.025]"
               )}
             >
               <span
                 className={cn(
-                  "inline-flex h-6 items-center rounded-full px-2",
+                  "inline-flex h-5 items-center rounded-full px-2",
                   "bg-foreground text-background font-mono text-[9px] tracking-[0.18em] uppercase",
                   "dark:bg-foreground dark:text-background"
                 )}
               >
                 Now
               </span>
-              <p className="min-w-0 truncate font-mono text-[11px] tracking-[0.04em] text-foreground/75">
+              <p className="min-w-0 truncate font-mono text-[10.5px] tracking-[0.04em] text-foreground/75">
                 <span className="text-foreground/55">{NOW.role} ·</span>{" "}
                 <span className="text-foreground">{NOW.company}</span>
               </p>
@@ -326,12 +290,12 @@ export function HeroSection() {
           <div
             className={cn(
               "portfolio-hero-enter portfolio-hero-delay-3 relative",
-              "mx-auto w-full max-w-[280px] sm:max-w-[320px]",
-              "lg:mx-0 lg:ml-auto lg:max-w-[360px] xl:max-w-[400px]"
+              "mx-auto w-full max-w-[240px] sm:max-w-[260px]",
+              "lg:mx-0 lg:ml-auto lg:max-w-[300px] xl:max-w-[340px]"
             )}
           >
             {/* Editorial caption — top */}
-            <div className="mb-3 flex items-center justify-between gap-3 font-mono text-[9px] tracking-[0.22em] text-muted-foreground uppercase">
+            <div className="mb-2.5 flex items-center justify-between gap-3 font-mono text-[9px] tracking-[0.22em] text-muted-foreground uppercase">
               <span className="text-foreground/45">Fig. 01</span>
               <span className="text-foreground/35">{SITE.title}</span>
             </div>
@@ -369,7 +333,7 @@ export function HeroSection() {
                 {/* Soft top gradient for caption legibility */}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black/35 via-black/10 to-transparent"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/35 via-black/10 to-transparent"
                 />
 
                 <figcaption className="absolute inset-x-3 bottom-3 flex items-center justify-between text-white">
@@ -382,22 +346,48 @@ export function HeroSection() {
                 </figcaption>
               </figure>
             </PortraitTilt>
+
+            {/* Availability status — directly under image */}
+            <div
+              className={cn(
+                "mt-3 flex items-center justify-between gap-3",
+                "font-mono text-[10px] tracking-[0.18em] uppercase"
+              )}
+            >
+              <span
+                className={cn(
+                  "inline-flex items-center gap-2",
+                  "text-emerald-700/85 dark:text-emerald-300/85"
+                )}
+              >
+                <span
+                  aria-hidden
+                  className="relative inline-flex size-1.5 items-center justify-center"
+                >
+                  <span className="absolute size-1.5 animate-ping rounded-full bg-emerald-500/55 dark:bg-emerald-400/45" />
+                  <span className="relative size-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+                </span>
+                Open to senior roles
+              </span>
+              <span className="text-muted-foreground/70">Texas, USA</span>
+            </div>
           </div>
         </div>
 
-        {/* Stats + socials — bottom band */}
+        {/* Stats + socials — pinned to bottom of the section */}
         <div
           className={cn(
             "portfolio-hero-enter portfolio-hero-delay-5",
-            "mt-12 grid grid-cols-1 gap-8 border-t border-foreground/[0.07] pt-8 sm:mt-14 sm:pt-10",
-            "lg:mt-16 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] lg:gap-16",
+            "mt-10 flex flex-col gap-5 border-t border-foreground/[0.07] pt-5",
+            "sm:mt-12 sm:pt-6 sm:flex-row sm:items-end sm:justify-between sm:gap-8",
+            "lg:mt-auto lg:pt-7",
             "dark:border-white/[0.06]"
           )}
         >
           {/* Inline numeric stats with hairline separators */}
           <dl
             className={cn(
-              "flex flex-wrap items-end gap-x-0 gap-y-6",
+              "flex flex-wrap items-end gap-y-4",
               "divide-x divide-foreground/[0.07] dark:divide-white/[0.06]"
             )}
           >
@@ -405,64 +395,44 @@ export function HeroSection() {
               <div
                 key={s.label}
                 className={cn(
-                  "flex min-w-0 flex-col gap-2",
-                  i === 0 ? "pr-7" : "px-7",
-                  i === HERO_STATS.length - 1 && "pl-7 pr-0"
+                  "flex min-w-0 flex-col gap-1",
+                  i === 0 ? "pr-6" : "px-6",
+                  i === HERO_STATS.length - 1 && "pl-6 pr-0"
                 )}
               >
                 <dd
                   className={cn(
-                    "font-heading text-[2rem] leading-none font-medium tracking-tight tabular-nums",
-                    "text-foreground/95 sm:text-[2.25rem]"
+                    "font-heading text-[1.5rem] leading-none font-medium tracking-tight tabular-nums",
+                    "text-foreground/95 sm:text-[1.65rem]"
                   )}
                 >
                   {s.value}
                 </dd>
-                <dt className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+                <dt className="font-mono text-[9.5px] tracking-[0.2em] text-muted-foreground uppercase">
                   {s.label}
                 </dt>
               </div>
             ))}
           </dl>
 
-          {/* Socials — text rows, editorial */}
-          <ul
-            className={cn(
-              "flex flex-col gap-1 self-end",
-              "lg:items-end"
-            )}
-          >
+          {/* Socials — compact icon row */}
+          <ul className="flex items-center gap-1 sm:pb-0.5">
             {SOCIAL_LINKS.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   target="_blank"
                   rel="noreferrer"
+                  aria-label={link.label}
+                  title={link.label}
                   className={cn(
-                    "group/social inline-flex items-center gap-3 py-1",
-                    "text-[13px] tracking-tight text-muted-foreground transition-colors hover:text-foreground"
+                    "group/social inline-flex size-8 items-center justify-center rounded-full",
+                    "text-foreground/55 transition-colors duration-300",
+                    "hover:bg-foreground/[0.04] hover:text-foreground/90",
+                    "dark:hover:bg-white/[0.06]"
                   )}
                 >
-                  <SocialBrandIcon
-                    brand={link.brand}
-                    className="size-[15px] opacity-65 transition-opacity group-hover/social:opacity-100"
-                  />
-                  <span className="font-mono text-[10px] tracking-[0.22em] uppercase">
-                    {link.label}
-                  </span>
-                  <span className="font-heading text-foreground/85">
-                    {link.brand === "linkedin"
-                      ? "/baraa-rasheed"
-                      : link.brand === "github"
-                      ? "/Baraa-bi"
-                      : link.brand === "x"
-                      ? "@baraarasheed"
-                      : link.short}
-                  </span>
-                  <ArrowUpRightIcon
-                    aria-hidden
-                    className="size-3 -translate-x-1 opacity-0 transition-all duration-300 group-hover/social:translate-x-0 group-hover/social:opacity-70"
-                  />
+                  <SocialBrandIcon brand={link.brand} className="size-4" />
                 </a>
               </li>
             ))}
