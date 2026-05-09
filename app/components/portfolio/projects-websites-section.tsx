@@ -12,8 +12,9 @@ export function ProjectsWebsitesSection() {
     <WorkbenchScrollFrame
       id="apps-web"
       accessibleTitleId="apps-web-heading"
+      chainWorkbenchPagerWheel
     >
-      <div className="mx-auto max-w-6xl space-y-10 px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
+      <div className="mx-auto w-full max-w-6xl space-y-10 px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
         <ScrollReveal>
           <SectionHeading
             headingId="apps-web-heading"

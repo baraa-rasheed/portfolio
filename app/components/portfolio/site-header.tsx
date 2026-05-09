@@ -407,7 +407,7 @@ export function PortfolioDesktopExplorerAside({
     <aside
       className={cn(
         "portfolio-desktop-explorer portfolio-explorer-pane-glass hidden shrink-0 flex-col overflow-hidden transition-[width] duration-200 ease-out lg:flex",
-        explorerCollapsed ? "w-[3.25rem] min-w-[3.25rem]" : "w-[236px] min-w-[236px]",
+        explorerCollapsed ? "w-[3.75rem] min-w-[3.75rem]" : "w-[260px] min-w-[260px]",
         side === "left"
           ? "border-r border-neutral-950/[0.06] dark:border-white/[0.07]"
           : "border-l border-neutral-950/[0.06] dark:border-white/[0.07]"

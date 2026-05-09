@@ -144,13 +144,6 @@ export const EXPLORER_TREE: readonly ExplorerRow[] = [
   },
   {
     type: "file",
-    label: "Certifications",
-    href: "#certifications",
-    explorerFile: "certifications.md",
-    explorerKind: "md",
-  },
-  {
-    type: "file",
     label: "Courses",
     href: "#courses",
     explorerFile: "courses.ts",

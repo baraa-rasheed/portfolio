@@ -77,15 +77,7 @@ export function SiteFooter() {
       as="footer"
       accessibleTitleId="contact-heading"
     >
-      <div
-        className={cn(
-          "mx-auto flex w-full max-w-6xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:py-10",
-          // Stretch to the full height of the section pane and vertically
-          // center the content so the form sits in the middle instead of
-          // being pinned to the top with empty space below.
-          "min-h-full lg:justify-center"
-        )}
-      >
+      <div className="mx-auto flex w-full max-w-6xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
         <ScrollReveal className="space-y-6 sm:space-y-8">
           <SectionHeading
             eyebrow="Contact"

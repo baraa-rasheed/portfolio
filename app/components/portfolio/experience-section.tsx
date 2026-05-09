@@ -137,7 +137,8 @@ function ExperienceCard({
 
             <div className="space-y-1">
               <p className="font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase">
-                Chapter {chapterNum} <span className="text-muted-foreground/55">/ {totalNum}</span>
+                Chapter {chapterNum}{" "}
+                <span className="text-muted-foreground/55">/ {totalNum}</span>
               </p>
               <p className="font-mono text-[13px] font-medium text-foreground/90">
                 {job.period}
@@ -196,7 +197,7 @@ export function ExperienceSection() {
 
   return (
     <WorkbenchScrollFrame id="experience">
-      <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
+      <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
         <ScrollReveal>
           <SectionHeading
             eyebrow="Experience"

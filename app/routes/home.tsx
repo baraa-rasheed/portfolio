@@ -1,6 +1,5 @@
 import type { Route } from "./+types/home"
 import {
-  CertificationsSection,
   CoursesSection,
   EducationSection,
   ExperienceSection,
@@ -41,7 +40,6 @@ export default function Home() {
           <ProjectsWebsitesSection />
           <SkillsSection />
           <EducationSection />
-          <CertificationsSection />
           <CoursesSection />
           <RecommendationsSection />
           <SiteFooter />

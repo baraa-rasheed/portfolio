@@ -1,4 +1,3 @@
-export { CertificationsSection } from "./certifications-section"
 export { CoursesSection } from "./courses-section"
 export { EducationSection } from "./education-section"
 export { ExperienceSection } from "./experience-section"

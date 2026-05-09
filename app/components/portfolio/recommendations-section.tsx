@@ -59,9 +59,9 @@ function TestimonialCard({ rec }: { rec: RecommendationItem }) {
   return (
     <article
       className={cn(
-        "group/card relative flex shrink-0 flex-col justify-between overflow-hidden rounded-2xl border p-7",
-        // Bigger cards — more presence in the rail.
-        "w-[20rem] sm:w-[23rem] lg:w-[26rem]",
+        "group/card relative flex shrink-0 flex-col justify-between overflow-hidden rounded-2xl border p-5 sm:p-6",
+        // Fluid width — stays inside the section column and viewport (with explorer chrome).
+        "w-[clamp(16.25rem,min(88vw,22rem),22rem)] sm:w-[clamp(17.5rem,min(72vw,23rem),23rem)] lg:w-[clamp(18rem,min(34vw,24rem),24rem)]",
         "border-foreground/[0.07] bg-white/65 backdrop-blur-xl",
         "shadow-[0_1px_0_rgb(255_255_255/0.6)_inset,0_2px_6px_-3px_rgb(0_0_0/0.05),0_18px_40px_-28px_oklch(0.25_0.05_260_/_0.18)]",
         "transition-[border-color,box-shadow,transform] duration-300 ease-out",
@@ -159,10 +159,7 @@ export function RecommendationsSection() {
     <WorkbenchScrollFrame id="recommendations" className="relative">
       <div
         className={cn(
-          "relative flex min-h-0 flex-1 flex-col px-3 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10",
-          // Vertically center the whole block inside the section pane so the
-          // marquee sits in the middle instead of pinned to the top.
-          "lg:justify-center"
+          "relative mx-auto flex min-h-0 w-full max-w-6xl flex-col gap-8 px-4 py-6 sm:gap-10 sm:px-6 sm:py-8 lg:gap-10 lg:py-10"
         )}
       >
         {/* Subtle ambient blobs (kept restrained for a pro feel) */}
@@ -174,7 +171,7 @@ export function RecommendationsSection() {
           <div className="absolute right-[-8%] bottom-[10%] h-[240px] w-[240px] rounded-full bg-sky-400/14 blur-3xl dark:bg-sky-400/10" />
         </div>
 
-        <div className="relative flex flex-col gap-10">
+        <div className="relative flex min-w-0 flex-col gap-8 sm:gap-10">
           <ScrollReveal>
             <SectionHeading
               eyebrow="References"
@@ -184,26 +181,26 @@ export function RecommendationsSection() {
             />
           </ScrollReveal>
 
-          {/* Marquee rail */}
+          {/* Marquee rail — inset to max-w-6xl column; fades hug content edges */}
           <ScrollReveal delayMs={80}>
-            <div className="group/marquee relative -mx-3 sm:-mx-6 lg:-mx-8">
+            <div className="group/marquee relative min-w-0">
               {/* Edge fade masks */}
               <div
                 aria-hidden
                 className={cn(
-                  "pointer-events-none absolute inset-y-0 left-0 z-[1] w-16 sm:w-24 lg:w-32",
-                  "bg-linear-to-r from-background via-background/70 to-transparent"
+                  "pointer-events-none absolute inset-y-0 left-0 z-[1] w-10 sm:w-14 lg:w-20",
+                  "bg-linear-to-r from-background via-background/75 to-transparent"
                 )}
               />
               <div
                 aria-hidden
                 className={cn(
-                  "pointer-events-none absolute inset-y-0 right-0 z-[1] w-16 sm:w-24 lg:w-32",
-                  "bg-linear-to-l from-background via-background/70 to-transparent"
+                  "pointer-events-none absolute inset-y-0 right-0 z-[1] w-10 sm:w-14 lg:w-20",
+                  "bg-linear-to-l from-background via-background/75 to-transparent"
                 )}
               />
 
-              <div className="overflow-hidden">
+              <div className="overflow-hidden rounded-xl">
                 <div
                   className={cn(
                     "flex w-max items-stretch will-change-transform",

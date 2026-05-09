@@ -7,7 +7,6 @@ export const PORTFOLIO_EDITOR_TAB_BY_SECTION: Record<string, string> = {
   skills: "skills.ts",
   "apps-mobile": "mobile.tsx",
   "apps-web": "web.tsx",
-  certifications: "certifications.md",
   courses: "courses.ts",
   contact: "contact.md",
 }

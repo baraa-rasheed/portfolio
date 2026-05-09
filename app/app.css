@@ -128,25 +128,13 @@
   html {
     @apply scroll-smooth font-sans antialiased;
     color-scheme: light;
-    background-color: var(--background);
-    background-image:
-      radial-gradient(ellipse 120% 85% at 50% -28%, oklch(0.88 0.06 255 / 0.42), transparent 58%),
-      radial-gradient(ellipse 70% 55% at 98% 0%, oklch(0.92 0.05 300 / 0.28), transparent 52%),
-      radial-gradient(ellipse 55% 45% at 2% 88%, oklch(0.9 0.04 215 / 0.22), transparent 50%),
-      linear-gradient(180deg, oklch(0.996 0.003 230) 0%, oklch(0.978 0.012 240) 42%, oklch(0.955 0.02 255) 100%);
-    background-attachment: fixed;
-    background-size: 100% 100%;
+    /* Base tint matches `PortfolioPageAmbience` / minimized mesh canvas */
+    background-color: #f5f7fb;
     }
+
   html.dark {
     color-scheme: dark;
-    background-color: oklch(0.13 0.028 255);
-    background-image:
-      radial-gradient(ellipse 125% 82% at 50% -22%, oklch(0.38 0.14 275 / 0.5), transparent 60%),
-      radial-gradient(ellipse 68% 58% at 94% 4%, oklch(0.32 0.1 300 / 0.35), transparent 54%),
-      radial-gradient(ellipse 52% 48% at 6% 90%, oklch(0.28 0.08 215 / 0.28), transparent 52%),
-      linear-gradient(180deg, oklch(0.17 0.028 248) 0%, oklch(0.14 0.03 262) 45%, oklch(0.11 0.035 275) 100%);
-    background-attachment: fixed;
-    background-size: 100% 100%;
+    background-color: #0c0d10;
     }
   html::before {
     content: "";
@@ -225,9 +213,7 @@
       scroll-padding-top: 0;
       }
 
-    .portfolio-hero-blob-a,
-    .portfolio-hero-blob-b,
-    .portfolio-hero-blob-c,
+    .portfolio-mesh-blob,
     .portfolio-hero-shimmer-ring,
     .portfolio-scroll-hint,
     .portfolio-avatar-soft-pulse,
@@ -627,6 +613,16 @@
     }
 }
 
+/** Skills second-row ticker — same duplicated strip, scrolls the other way (-50% → 0). */
+@keyframes portfolio-marquee-reverse {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+    }
+  100% {
+    transform: translate3d(0, 0, 0);
+    }
+}
+
 @keyframes portfolio-scroll-hint {
   0%,
   100% {
@@ -661,13 +657,6 @@
 }
 
 @layer utilities {
-  /* Static decorative blobs — animated blur layers were costly on scroll/GPU. */
-  .portfolio-hero-blob-a,
-  .portfolio-hero-blob-b,
-  .portfolio-hero-blob-c {
-    animation: none;
-    }
-
   .portfolio-hero-enter {
     animation: portfolio-hero-enter 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94)
       both;
@@ -726,10 +715,6 @@
     display: none;
     }
 
-  /* Dark mode orb tints stay visible on deep backgrounds */
-  .dark .portfolio-hero-orbs {
-    mix-blend-mode: screen;
-    }
 }
 
 /* ------------------------------------------------------------- *

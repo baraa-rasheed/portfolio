@@ -107,15 +107,14 @@ function PortfolioWorkbenchShellInner({
           workbenchMaximized ? "lg:mx-0" : "lg:mx-auto",
           // Avoid `100vw` here: it includes the scrollbar on many browsers, which can offset centering at 100% zoom.
           "lg:w-full",
-          workbenchMaximized ? "lg:max-w-none" : "lg:max-w-none",
+          workbenchMaximized ? "lg:max-w-none" : "lg:max-w-7xl",
           workbenchMaximized
             ? "lg:rounded-none lg:border-0 lg:bg-[#fafafa]/52 lg:shadow-none lg:backdrop-blur-[32px]"
             : "lg:rounded-2xl lg:border lg:border-white/35 lg:bg-[#fafafa]/52 lg:shadow-[0_22px_60px_-16px_rgba(18,52,120,0.2)] lg:backdrop-blur-[32px]",
           workbenchMaximized
             ? "dark:lg:bg-[#1a1b1f]/72"
             : "dark:lg:border-white/12 dark:lg:bg-[#1a1b1f]/72 dark:lg:shadow-black/35",
-          // Block all interaction with the minimized workbench (the dock pill
-          // is the only restore affordance).
+          // Block interaction while minimized; dock pill restores via toggle.
           workbenchMinimized && "pointer-events-none"
         )}
       >
@@ -176,7 +175,7 @@ function PortfolioWorkbenchShellInner({
           Mounted before the dock so the dock pill renders on top (z-50 > z-40). */}
       <PortfolioWorkbenchMinimizedBackdrop />
 
-      {/* Dock pill — visible only while minimized; click to restore. */}
+      {/* Dock pill — always visible on lg; toggles minimize / restore. */}
       <PortfolioWorkbenchDock />
     </div>
   )

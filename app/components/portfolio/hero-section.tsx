@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ArrowDownRightIcon, MapPinIcon } from "lucide-react"
+import { ArrowUpRightIcon } from "lucide-react"
 import {
   motion,
   useMotionTemplate,
@@ -11,7 +11,6 @@ import {
   useTransform,
 } from "motion/react"
 
-import { Button } from "~/components/ui/button"
 import { SocialBrandIcon } from "~/lib/social-brand-icon"
 import { cn } from "~/lib/utils"
 import { IMAGES, SITE, SOCIAL_LINKS } from "~/constants/portfolio"
@@ -19,10 +18,15 @@ import { IMAGES, SITE, SOCIAL_LINKS } from "~/constants/portfolio"
 import { WorkbenchScrollFrame } from "./workbench-scroll-frame"
 
 const HERO_STATS = [
-  { value: "9+", label: "Years" },
+  { value: "9+", label: "Years engineering" },
   { value: "120+", label: "Apps shipped" },
   { value: "1M+", label: "Installs" },
 ] as const
+
+const NOW = {
+  role: "Senior Software Engineer",
+  company: "7-Eleven",
+} as const
 
 /**
  * Pointer-driven 3D tilt for the portrait. Tracks the cursor relative to the
@@ -119,7 +123,7 @@ function PortraitTilt({ children }: { children: React.ReactNode }) {
           <motion.div
             aria-hidden
             style={{ backgroundImage: shine }}
-            className="pointer-events-none absolute inset-0 rounded-[2rem] mix-blend-soft-light"
+            className="pointer-events-none absolute inset-0 rounded-[1.75rem] mix-blend-soft-light"
           />
         ) : null}
       </motion.div>
@@ -128,54 +132,227 @@ function PortraitTilt({ children }: { children: React.ReactNode }) {
 }
 
 export function HeroSection() {
+  const firstName = SITE.name.split(" ")[0]
+
   return (
     <WorkbenchScrollFrame id="about" className="relative">
       <div
         className={cn(
-          "relative mx-auto flex w-full max-w-6xl flex-col px-4 py-6 sm:px-6 sm:py-8",
-          // On lg, vertical-center inside the pane so it never needs its own scroll.
-          "lg:min-h-full lg:items-center lg:justify-center lg:py-6"
+          "relative mx-auto w-full max-w-6xl",
+          "px-4 pt-10 pb-12 sm:px-6 sm:pt-12 sm:pb-14",
+          "lg:px-8 lg:pt-14 lg:pb-16 xl:pt-16 xl:pb-20"
         )}
       >
+        {/* Top meta — index + status */}
         <div
           className={cn(
-            "grid w-full items-center gap-8 sm:gap-10",
-            "lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] lg:gap-14 xl:gap-20"
+            "portfolio-hero-enter portfolio-hero-delay-1",
+            "flex items-center justify-between gap-4",
+            "font-mono text-[10px] tracking-[0.22em] text-muted-foreground uppercase"
           )}
         >
-          {/* PORTRAIT */}
-          <div className="portfolio-hero-enter portfolio-hero-delay-2 relative mx-auto w-full max-w-[340px] sm:max-w-[380px] lg:mx-0 lg:max-w-none">
-            {/* Soft ambient glow behind the portrait */}
-            <div
+          <span className="inline-flex items-center gap-2 text-foreground/55">
+            <span className="text-foreground/35 tabular-nums">01</span>
+            <span aria-hidden>—</span>
+            <span>Overview</span>
+          </span>
+          <span
+            className={cn(
+              "inline-flex items-center gap-2",
+              "text-emerald-700/85 dark:text-emerald-300/85"
+            )}
+          >
+            <span
               aria-hidden
-              className="pointer-events-none absolute -inset-8 -z-[1] opacity-80 blur-3xl"
+              className={cn(
+                "relative inline-flex size-1.5 items-center justify-center"
+              )}
             >
-              <div className="absolute -top-4 -left-4 h-44 w-44 rounded-full bg-sky-400/20 dark:bg-sky-500/12" />
-              <div className="absolute -bottom-6 -right-6 h-52 w-52 rounded-full bg-violet-400/18 dark:bg-violet-500/12" />
+              <span className="absolute size-1.5 animate-ping rounded-full bg-emerald-500/55 dark:bg-emerald-400/45" />
+              <span className="relative size-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+            </span>
+            Open to senior roles
+          </span>
+        </div>
+
+        <div
+          className={cn(
+            "mt-10 grid w-full items-start gap-10",
+            "sm:mt-12 sm:gap-12",
+            "lg:mt-14 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] lg:gap-16",
+            "xl:gap-[5.5rem]"
+          )}
+        >
+          {/* COPY */}
+          <div className="relative flex min-w-0 flex-col">
+            {/* Eyebrow */}
+            <p
+              className={cn(
+                "portfolio-hero-enter portfolio-hero-delay-1",
+                "font-mono text-[10px] tracking-[0.22em] text-muted-foreground uppercase"
+              )}
+            >
+              <span className="text-foreground/65">{SITE.name}</span>
+              <span className="px-2 text-foreground/25" aria-hidden>
+                /
+              </span>
+              <span>Software Engineer · Texas, USA</span>
+            </p>
+
+            {/* Display headline */}
+            <h1
+              className={cn(
+                "portfolio-hero-enter portfolio-hero-delay-2 mt-6",
+                "font-heading text-balance tracking-[-0.025em]",
+                "text-[2.35rem] leading-[1.02] font-medium",
+                "sm:text-[3rem] sm:leading-[1.0]",
+                "lg:text-[3.4rem]",
+                "xl:text-[4rem] xl:leading-[0.98]"
+              )}
+            >
+              <span className="block text-foreground/95">
+                Hi, I’m {firstName}.
+              </span>
+              <span className="mt-2 block text-foreground/95">
+                I build{" "}
+                <em
+                  className={cn(
+                    "not-italic bg-clip-text text-transparent",
+                    "bg-linear-to-br from-sky-600 via-violet-600 to-emerald-600",
+                    "dark:from-sky-300 dark:via-violet-300 dark:to-emerald-300"
+                  )}
+                >
+                  calm, reliable
+                </em>{" "}
+                software for
+              </span>
+              <span className="mt-2 block text-foreground/55">
+                mobile &amp; web.
+              </span>
+            </h1>
+
+            {/* Lede */}
+            <p
+              className={cn(
+                "portfolio-hero-enter portfolio-hero-delay-3 mt-7",
+                "max-w-[34rem] text-pretty",
+                "text-[15.5px] leading-[1.7] text-muted-foreground",
+                "sm:text-base sm:leading-[1.72]"
+              )}
+            >
+              Nine years shipping mobile and web products across{" "}
+              <span className="text-foreground/85">AI</span>,{" "}
+              <span className="text-foreground/85">e‑commerce</span> and{" "}
+              <span className="text-foreground/85">fintech</span> — leading teams,
+              shipping to app stores, and writing the kind of code I’d want to
+              inherit.
+            </p>
+
+            {/* CTAs — refined link buttons (no heavy chrome) */}
+            <div
+              className={cn(
+                "portfolio-hero-enter portfolio-hero-delay-4 mt-9",
+                "flex flex-wrap items-center gap-x-7 gap-y-4"
+              )}
+            >
+              <a
+                href="#apps-mobile"
+                className={cn(
+                  "group/cta inline-flex items-center gap-2 font-heading text-[15px] font-medium tracking-tight",
+                  "text-foreground transition-colors"
+                )}
+              >
+                <span className="relative">
+                  See selected work
+                  <span
+                    aria-hidden
+                    className={cn(
+                      "absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-100 bg-foreground/85 transition-transform duration-500 ease-out",
+                      "group-hover/cta:scale-x-0"
+                    )}
+                  />
+                </span>
+                <ArrowUpRightIcon
+                  className="size-4 transition-transform duration-300 ease-out group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5"
+                  aria-hidden
+                />
+              </a>
+              <a
+                href="#contact"
+                className={cn(
+                  "group/cta2 inline-flex items-center gap-2 font-heading text-[15px] font-medium tracking-tight",
+                  "text-muted-foreground transition-colors hover:text-foreground"
+                )}
+              >
+                <span className="relative">
+                  Get in touch
+                  <span
+                    aria-hidden
+                    className={cn(
+                      "absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-foreground/55 transition-transform duration-500 ease-out",
+                      "group-hover/cta2:scale-x-100"
+                    )}
+                  />
+                </span>
+              </a>
             </div>
 
-            {/* Decorative offset frame — gives editorial depth */}
+            {/* Now-at strip */}
+            <div
+              className={cn(
+                "portfolio-hero-enter portfolio-hero-delay-4 mt-10",
+                "inline-flex max-w-full items-center gap-3 self-start rounded-full pl-1.5 pr-3.5 py-1",
+                "border border-foreground/[0.08] bg-foreground/[0.02] backdrop-blur-md",
+                "dark:border-white/[0.07] dark:bg-white/[0.025]"
+              )}
+            >
+              <span
+                className={cn(
+                  "inline-flex h-6 items-center rounded-full px-2",
+                  "bg-foreground text-background font-mono text-[9px] tracking-[0.18em] uppercase",
+                  "dark:bg-foreground dark:text-background"
+                )}
+              >
+                Now
+              </span>
+              <p className="min-w-0 truncate font-mono text-[11px] tracking-[0.04em] text-foreground/75">
+                <span className="text-foreground/55">{NOW.role} ·</span>{" "}
+                <span className="text-foreground">{NOW.company}</span>
+              </p>
+            </div>
+          </div>
+
+          {/* PORTRAIT — quieter, anchored top */}
+          <div
+            className={cn(
+              "portfolio-hero-enter portfolio-hero-delay-3 relative",
+              "mx-auto w-full max-w-[280px] sm:max-w-[320px]",
+              "lg:mx-0 lg:ml-auto lg:max-w-[360px] xl:max-w-[400px]"
+            )}
+          >
+            {/* Editorial caption — top */}
+            <div className="mb-3 flex items-center justify-between gap-3 font-mono text-[9px] tracking-[0.22em] text-muted-foreground uppercase">
+              <span className="text-foreground/45">Fig. 01</span>
+              <span className="text-foreground/35">{SITE.title}</span>
+            </div>
+
+            {/* Hairline frame ghost */}
             <div
               aria-hidden
               className={cn(
-                "pointer-events-none absolute inset-0 -z-[1] translate-x-3 translate-y-3 rounded-[2rem] border",
-                "border-foreground/[0.18] dark:border-white/[0.08]",
-                "lg:translate-x-4 lg:translate-y-4"
+                "pointer-events-none absolute -bottom-3 -right-3 -z-[1] hidden h-full w-full rounded-2xl border lg:block",
+                "border-foreground/[0.06] dark:border-white/[0.05]"
               )}
             />
 
             <PortraitTilt>
               <figure
                 className={cn(
-                  "relative overflow-hidden rounded-[2rem] border backdrop-blur-2xl",
-                  // Light mode — needed real contrast: foreground-tinted border,
-                  // a touch more opaque white fill, and a darker drop shadow so
-                  // the card actually reads against a near-white page.
-                  "border-foreground/[0.12] bg-white/55",
-                  "shadow-[0_1px_0_rgb(255_255_255/0.7)_inset,0_30px_80px_-32px_oklch(0.2_0.05_260_/_0.55)]",
-                  // Dark mode — original treatment retained.
-                  "dark:border-white/10 dark:bg-white/[0.04]",
-                  "dark:shadow-[0_36px_100px_-50px_oklch(0_0_0_/_0.7)]"
+                  "relative overflow-hidden rounded-2xl border",
+                  "border-foreground/[0.08] bg-foreground/[0.02]",
+                  "shadow-[0_24px_60px_-32px_oklch(0.22_0.04_265_/_0.35)]",
+                  "dark:border-white/[0.08] dark:bg-white/[0.025]",
+                  "dark:shadow-[0_28px_70px_-40px_oklch(0_0_0_/_0.6)]"
                 )}
               >
                 <img
@@ -184,178 +361,112 @@ export function HeroSection() {
                   loading="eager"
                   decoding="async"
                   className={cn(
-                    // Tall portrait crop — keeps the face anchored to the top
-                    // of the frame so the figure reads as a proper headshot.
                     "block w-full object-cover object-top",
-                    "aspect-[3/4]",
-                    "max-h-[clamp(360px,64vh,620px)]"
+                    "aspect-[4/5]"
                   )}
                 />
 
-                {/* Bottom → name plate */}
-                <figcaption
-                  className={cn(
-                    "absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-2xl border px-3.5 py-2.5",
-                    "border-white/55 bg-white/55 backdrop-blur-xl",
-                    "dark:border-white/12 dark:bg-[#1a1b1f]/65"
-                  )}
-                >
-                  <div className="min-w-0">
-                    <p className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
-                      {SITE.title}
-                    </p>
-                    <p className="truncate font-heading text-sm font-semibold tracking-tight">
-                      {SITE.name}
-                    </p>
-                  </div>
-                  <span
-                    className={cn(
-                      "inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-[0.14em] uppercase",
-                      "bg-emerald-500/[0.14] text-emerald-700 ring-1 ring-inset ring-emerald-500/30",
-                      "dark:bg-emerald-400/[0.12] dark:text-emerald-300 dark:ring-emerald-400/30"
-                    )}
-                  >
-                    <span className="size-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-                    Available
-                  </span>
+                {/* Soft top gradient for caption legibility */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black/35 via-black/10 to-transparent"
+                />
+
+                <figcaption className="absolute inset-x-3 bottom-3 flex items-center justify-between text-white">
+                  <p className="font-mono text-[9px] tracking-[0.22em] uppercase opacity-80">
+                    {SITE.name}
+                  </p>
+                  <p className="font-mono text-[9px] tracking-[0.22em] uppercase opacity-60">
+                    {new Date().getFullYear()}
+                  </p>
                 </figcaption>
               </figure>
             </PortraitTilt>
           </div>
+        </div>
 
-          {/* COPY */}
-          <div className="relative flex flex-col gap-6 sm:gap-7">
-            {/* Eyebrow / location */}
-            <div className="portfolio-hero-enter portfolio-hero-delay-1 flex flex-wrap items-center gap-2.5">
-              <span
+        {/* Stats + socials — bottom band */}
+        <div
+          className={cn(
+            "portfolio-hero-enter portfolio-hero-delay-5",
+            "mt-12 grid grid-cols-1 gap-8 border-t border-foreground/[0.07] pt-8 sm:mt-14 sm:pt-10",
+            "lg:mt-16 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] lg:gap-16",
+            "dark:border-white/[0.06]"
+          )}
+        >
+          {/* Inline numeric stats with hairline separators */}
+          <dl
+            className={cn(
+              "flex flex-wrap items-end gap-x-0 gap-y-6",
+              "divide-x divide-foreground/[0.07] dark:divide-white/[0.06]"
+            )}
+          >
+            {HERO_STATS.map((s, i) => (
+              <div
+                key={s.label}
                 className={cn(
-                  "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-[10px] tracking-[0.16em] uppercase",
-                  "border-white/55 bg-white/35 text-foreground/75 backdrop-blur-md",
-                  "dark:border-white/12 dark:bg-white/[0.05] dark:text-foreground/80"
+                  "flex min-w-0 flex-col gap-2",
+                  i === 0 ? "pr-7" : "px-7",
+                  i === HERO_STATS.length - 1 && "pl-7 pr-0"
                 )}
               >
-                <MapPinIcon className="size-3 opacity-70" aria-hidden />
-                Texas, USA
-              </span>
-              <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
-                Senior Software Engineer
-              </span>
-            </div>
-
-            {/* Headline */}
-            <h1
-              className={cn(
-                "portfolio-hero-enter portfolio-hero-delay-2 font-heading font-semibold tracking-[-0.025em] text-balance",
-                "text-4xl leading-[1.05] sm:text-5xl lg:text-[3.75rem] lg:leading-[1.02] xl:text-[4.25rem]"
-              )}
-            >
-              <span className="block">Hi, I’m {SITE.name.split(" ")[0]}.</span>
-              <span
-                className={cn(
-                  "mt-1 block bg-linear-to-br from-sky-600 via-violet-600 to-emerald-600 bg-clip-text font-medium text-transparent",
-                  "dark:from-sky-300 dark:via-violet-300 dark:to-emerald-300"
-                )}
-              >
-                I build calm, reliable software.
-              </span>
-            </h1>
-
-            {/* Tagline */}
-            <p
-              className={cn(
-                "portfolio-hero-enter portfolio-hero-delay-3 max-w-xl text-pretty text-muted-foreground",
-                "text-[15px] leading-relaxed sm:text-base lg:text-[17px]"
-              )}
-            >
-              Senior engineer with{" "}
-              <span className="font-medium text-foreground/85">8+ years</span>{" "}
-              shipping mobile and web products across{" "}
-              <span className="font-medium text-foreground/85">AI</span>,{" "}
-              <span className="font-medium text-foreground/85">e‑commerce</span>{" "}
-              and{" "}
-              <span className="font-medium text-foreground/85">fintech</span>.
-              Currently helping ship at scale for{" "}
-              <span className="font-medium text-foreground/85">7‑Eleven</span>.
-            </p>
-
-            {/* CTAs */}
-            <div className="portfolio-hero-enter portfolio-hero-delay-4 flex flex-wrap items-center gap-3">
-              <Button
-                asChild
-                size="lg"
-                className={cn(
-                  "group/cta gap-2 rounded-xl px-5 transition-all",
-                  "shadow-[0_18px_40px_-22px_oklch(0.55_0.18_265_/_0.7)]",
-                  "hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-20px_oklch(0.55_0.2_265_/_0.85)]",
-                  "dark:shadow-[0_22px_50px_-22px_oklch(0.62_0.22_270_/_0.65)]"
-                )}
-              >
-                <a href="#apps-mobile">
-                  See selected work
-                  <ArrowDownRightIcon className="size-4 transition-transform group-hover/cta:translate-x-0.5 group-hover/cta:translate-y-0.5" />
-                </a>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className={cn(
-                  "rounded-xl border-white/55 bg-white/30 backdrop-blur-md hover:bg-white/45",
-                  "dark:border-white/15 dark:bg-white/[0.06] dark:hover:bg-white/[0.1]"
-                )}
-              >
-                <a href="#contact">Get in touch</a>
-              </Button>
-            </div>
-
-            {/* Stats strip + social — single condensed row */}
-            <div
-              className={cn(
-                "portfolio-hero-enter portfolio-hero-delay-5 mt-1 flex flex-col gap-5 border-t pt-5",
-                "border-foreground/[0.08] dark:border-white/[0.08]",
-                "sm:flex-row sm:items-center sm:justify-between sm:gap-6"
-              )}
-            >
-              <dl className="flex flex-wrap items-center gap-x-6 gap-y-3 sm:gap-x-7">
-                {HERO_STATS.map((s) => (
-                  <div key={s.label} className="flex flex-col">
-                    <dt className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
-                      {s.label}
-                    </dt>
-                    <dd
-                      className={cn(
-                        "font-heading text-xl font-semibold tracking-tight bg-linear-to-br bg-clip-text text-transparent",
-                        "from-sky-600 via-violet-600 to-emerald-600",
-                        "dark:from-sky-300 dark:via-violet-300 dark:to-emerald-300"
-                      )}
-                    >
-                      {s.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-
-              <div className="flex items-center gap-2">
-                {SOCIAL_LINKS.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={link.label}
-                    title={link.label}
-                    className={cn(
-                      "flex size-10 items-center justify-center rounded-full border text-foreground/80 transition-colors",
-                      "border-white/45 bg-white/30 backdrop-blur-sm hover:bg-white/45 hover:text-foreground",
-                      "dark:border-white/10 dark:bg-white/[0.05] dark:hover:bg-white/[0.09]"
-                    )}
-                  >
-                    <SocialBrandIcon brand={link.brand} />
-                  </a>
-                ))}
+                <dd
+                  className={cn(
+                    "font-heading text-[2rem] leading-none font-medium tracking-tight tabular-nums",
+                    "text-foreground/95 sm:text-[2.25rem]"
+                  )}
+                >
+                  {s.value}
+                </dd>
+                <dt className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+                  {s.label}
+                </dt>
               </div>
-            </div>
-          </div>
+            ))}
+          </dl>
+
+          {/* Socials — text rows, editorial */}
+          <ul
+            className={cn(
+              "flex flex-col gap-1 self-end",
+              "lg:items-end"
+            )}
+          >
+            {SOCIAL_LINKS.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cn(
+                    "group/social inline-flex items-center gap-3 py-1",
+                    "text-[13px] tracking-tight text-muted-foreground transition-colors hover:text-foreground"
+                  )}
+                >
+                  <SocialBrandIcon
+                    brand={link.brand}
+                    className="size-[15px] opacity-65 transition-opacity group-hover/social:opacity-100"
+                  />
+                  <span className="font-mono text-[10px] tracking-[0.22em] uppercase">
+                    {link.label}
+                  </span>
+                  <span className="font-heading text-foreground/85">
+                    {link.brand === "linkedin"
+                      ? "/baraa-rasheed"
+                      : link.brand === "github"
+                      ? "/Baraa-bi"
+                      : link.brand === "x"
+                      ? "@baraarasheed"
+                      : link.short}
+                  </span>
+                  <ArrowUpRightIcon
+                    aria-hidden
+                    className="size-3 -translate-x-1 opacity-0 transition-all duration-300 group-hover/social:translate-x-0 group-hover/social:opacity-70"
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </WorkbenchScrollFrame>

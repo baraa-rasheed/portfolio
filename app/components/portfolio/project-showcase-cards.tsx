@@ -49,7 +49,7 @@ export function ProjectMobileCard({ project }: { project: ProjectItem }) {
     <>
       <div
         className={cn(
-          "relative mx-auto aspect-square w-[min(7rem,52vw)] overflow-hidden rounded-[26%]",
+          "relative mx-auto aspect-square w-[min(7rem,52vw)] max-w-full min-h-0 shrink-0 overflow-hidden rounded-[26%]",
           "ring-1 ring-black/15 ring-inset dark:ring-white/20"
         )}
       >
@@ -57,12 +57,15 @@ export function ProjectMobileCard({ project }: { project: ProjectItem }) {
           <img
             src={project.previewImage}
             alt=""
-            className="size-full object-cover"
+            className="absolute inset-0 size-full object-cover object-center"
             loading="lazy"
             decoding="async"
           />
         ) : (
-          <PreviewFallback initials={projectInitials(project.name)} />
+          <PreviewFallback
+            className="absolute inset-0"
+            initials={projectInitials(project.name)}
+          />
         )}
       </div>
       <div className="mx-auto mt-4 w-full max-w-[14rem] min-w-0 space-y-1.5">

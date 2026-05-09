@@ -24,11 +24,37 @@ import { usePortfolioScrollActiveHref } from "./portfolio-scroll-active-context"
  * outer pager’s `scrollend` on `[data-portfolio-scroll-root]` (desktop) or `window` (mobile),
  * with a timeout fallback. Full-height snap sections often stay “intersecting” for IO, so we tie
  * resets to scroll spy + pager completion instead of IntersectionObserver alone.
+ *
+ * Optional `chainWorkbenchPagerWheel` (desktop): nested inner scroll often won’t chain wheel
+ * deltas to the outer snap scrollport. When the inner pane is at its scroll limit, we advance
+ * exactly one adjacent `.portfolio-editor-section-target` via `scrollIntoView` (not raw
+ * `scrollBy`, which skips multiple snap pages on trackpads).
  */
 const SECTION_PAGE = "portfolio-editor-section-target"
 const SECTION_INSET = "portfolio-editor-section-inset"
 const SECTION_CARD = "portfolio-editor-pane-card"
 const SECTION_SCROLL = "portfolio-editor-pane-scroll"
+
+function directPagerSections(root: HTMLElement): HTMLElement[] {
+  return Array.from(
+    root.querySelectorAll(":scope > .portfolio-editor-section-target")
+  ) as HTMLElement[]
+}
+
+function scrollWorkbenchAdjacentPage(
+  root: HTMLElement,
+  host: HTMLElement | null,
+  direction: 1 | -1
+): boolean {
+  if (!host) return false
+  const pages = directPagerSections(root)
+  const i = pages.indexOf(host)
+  if (i === -1) return false
+  const target = pages[i + direction]
+  if (!target) return false
+  target.scrollIntoView({ block: "start", inline: "nearest", behavior: "auto" })
+  return true
+}
 
 type FrameTag = "section" | "footer"
 
@@ -40,6 +66,7 @@ export function WorkbenchScrollFrame({
   className,
   cardClassName,
   scrollAreaClassName,
+  chainWorkbenchPagerWheel = false,
   children,
 }: {
   id: string
@@ -49,6 +76,8 @@ export function WorkbenchScrollFrame({
   className?: string
   cardClassName?: string
   scrollAreaClassName?: string
+  /** Desktop: when inner scroll hits top/bottom, forward wheel to outer pager (one section step). */
+  chainWorkbenchPagerWheel?: boolean
   children: React.ReactNode
 }) {
   const Tag = as
@@ -61,6 +90,7 @@ export function WorkbenchScrollFrame({
 
   const sectionRef = React.useRef<HTMLElement>(null)
   const scrollRef = React.useRef<HTMLDivElement>(null)
+  const outerPagerLockRef = React.useRef(false)
 
   React.useEffect(() => {
     const inner = scrollRef.current
@@ -128,6 +158,65 @@ export function WorkbenchScrollFrame({
       window.clearTimeout(fallback)
     }
   }, [activeHref, mine])
+
+  React.useEffect(() => {
+    if (!chainWorkbenchPagerWheel) return
+
+    const inner = scrollRef.current
+    if (!inner) return
+
+    const mq = window.matchMedia("(min-width: 1024px)")
+
+    function outerScrollRoot(): HTMLElement | null {
+      return document.querySelector(
+        "[data-portfolio-scroll-root]"
+      ) as HTMLElement | null
+    }
+
+    function onWheelCapture(e: WheelEvent): void {
+      const pane = scrollRef.current
+      if (!pane) return
+      if (!mq.matches) return
+      if (e.ctrlKey) return
+      if (e.deltaY === 0) return
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY) * 1.5) return
+
+      const root = outerScrollRoot()
+      if (!root) return
+
+      const { scrollTop, scrollHeight, clientHeight } = pane
+      const maxScroll = Math.max(0, scrollHeight - clientHeight)
+      const tol = 0.5
+      const canScrollDown = scrollTop < maxScroll - tol
+      const canScrollUp = scrollTop > tol
+
+      if (e.deltaY > 0 && canScrollDown) return
+      if (e.deltaY < 0 && canScrollUp) return
+
+      e.preventDefault()
+
+      if (outerPagerLockRef.current) return
+
+      const host = sectionRef.current
+      const direction = (e.deltaY > 0 ? 1 : -1) as 1 | -1
+      const moved = scrollWorkbenchAdjacentPage(root, host, direction)
+      if (!moved) return
+
+      outerPagerLockRef.current = true
+      const unlock = (): void => {
+        outerPagerLockRef.current = false
+      }
+      root.addEventListener("scrollend", unlock, { once: true })
+      window.setTimeout(unlock, 480)
+    }
+
+    inner.addEventListener("wheel", onWheelCapture, { passive: false, capture: true })
+
+    return () => {
+      outerPagerLockRef.current = false
+      inner.removeEventListener("wheel", onWheelCapture, { capture: true })
+    }
+  }, [chainWorkbenchPagerWheel])
 
   return (
     <Tag
