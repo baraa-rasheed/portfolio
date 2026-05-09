@@ -718,7 +718,7 @@
 }
 
 /* ------------------------------------------------------------- *
- *  Hero — aurora (mostly static), conic ring, text gradient
+ *  Hero — aurora (animated; scoped via .portfolio-hero-aurora in hero only)
  * ------------------------------------------------------------- */
 
 @keyframes portfolio-aurora-shift {
@@ -734,18 +734,19 @@
   /* Local aurora layer for the hero pane — sits behind the content */
   .portfolio-hero-aurora {
     background-image:
-      radial-gradient(60% 50% at 18% 22%, oklch(0.74 0.16 250 / 0.34), transparent 62%),
-      radial-gradient(50% 40% at 88% 30%, oklch(0.72 0.18 295 / 0.26), transparent 62%),
-      radial-gradient(55% 45% at 60% 95%, oklch(0.78 0.14 175 / 0.22), transparent 62%);
+      radial-gradient(60% 50% at 18% 22%, oklch(0.72 0.14 250 / 0.16), transparent 66%),
+      radial-gradient(50% 40% at 88% 30%, oklch(0.68 0.16 295 / 0.13), transparent 66%),
+      radial-gradient(55% 45% at 60% 95%, oklch(0.72 0.13 165 / 0.11), transparent 66%);
     background-size: 220% 220%, 220% 220%, 220% 220%;
     background-repeat: no-repeat;
+    animation: portfolio-aurora-shift 26s ease-in-out infinite;
     }
 
   .dark .portfolio-hero-aurora {
     background-image:
-      radial-gradient(60% 50% at 18% 22%, oklch(0.55 0.22 250 / 0.42), transparent 62%),
-      radial-gradient(50% 40% at 88% 30%, oklch(0.5 0.22 295 / 0.34), transparent 62%),
-      radial-gradient(55% 45% at 60% 95%, oklch(0.55 0.18 175 / 0.24), transparent 62%);
+      radial-gradient(60% 50% at 18% 22%, oklch(0.58 0.2 250 / 0.22), transparent 66%),
+      radial-gradient(50% 40% at 88% 30%, oklch(0.52 0.2 295 / 0.17), transparent 66%),
+      radial-gradient(55% 45% at 60% 95%, oklch(0.58 0.16 165 / 0.15), transparent 66%);
     }
 
   /* Animated rotating conic border (1px ring) — wrap any rounded card */
