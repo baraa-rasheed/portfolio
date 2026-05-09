@@ -25,8 +25,7 @@ export function meta(_: Route.MetaArgs) {
     },
     { property: "og:title", content: `${SITE.name} — ${SITE.title}` },
     { property: "og:description", content: SITE.tagline },
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: SITE.url },
+    { property: "og:type", content: "website" }
   ]
 }
 

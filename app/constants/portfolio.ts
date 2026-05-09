@@ -13,8 +13,6 @@ export type { ProjectKind, ProjectItem } from "./project-types"
 export const SITE = {
   name: "Baraa Rasheed",
   title: "Software Engineer",
-  /** Production URL for canonical / sharing */
-  url: "https://baraa-rasheed.deno.dev",
   tagline:
     "Senior software engineer with over 8 years of experience building mobile and web products across AI, e-commerce, and fintech. I lead teams, ship to app stores, and care about maintainable code and clear delivery.",
 } as const
@@ -60,13 +58,7 @@ export const SOCIAL_LINKS: ReadonlyArray<{
     href: PROFILE_URLS.github,
     short: "Code",
     brand: "github",
-  },
-  {
-    label: "Résumé site (archive)",
-    href: SITE.url,
-    short: "Archive",
-    brand: "web",
-  },
+  }
 ]
 
 /** Section links + VS Code explorer–style filenames. */
