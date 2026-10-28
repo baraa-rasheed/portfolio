@@ -465,6 +465,32 @@ export const SKILL_GROUPS: readonly SkillGroup[] = [
  * `...IOS_APP_STORE_CATALOG_APPS`.
  */
 export const PROJECTS: readonly ProjectItem[] = [
+  {
+    name: "react-native-skia-chart",
+    summary:
+      "Open-source GPU-accelerated charts for React Native & Expo, built on Skia + Reanimated (npm: react-native-skia-chart)",
+    kind: "mobile",
+    href: "https://github.com/baraa-rasheed/react-native-skia-chart",
+  },
+  {
+    name: "expo-pusher-push-notifications",
+    summary:
+      "Open-source Pusher Beams push notifications for Expo — Interests + Users, config plugin, TypeScript (npm: expo-pusher-push-notifications)",
+    kind: "mobile",
+    href: "https://github.com/baraa-rasheed/expo-pusher-push-notifications",
+  },
+  {
+    name: "rn-new-arch-migrate",
+    summary: "CLI / agent skill for migrating React Native & Expo apps to the New Architecture",
+    kind: "mobile",
+    href: "https://github.com/baraa-rasheed/rn-new-arch-migrate",
+  },
+  {
+    name: "dotenv-guard",
+    summary: "Tiny CLI that validates .env files against a schema before you ship",
+    kind: "web",
+    href: "https://github.com/baraa-rasheed/dotenv-guard",
+  },
   ...IOS_APP_STORE_CATALOG_APPS,
   {
     name: "Expo Initlizer",
